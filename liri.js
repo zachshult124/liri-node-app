@@ -1,7 +1,7 @@
 require("dotenv").config();
-
 var keys = require("./keys.js");
 var request = require('request');
+
 var inputString = process.argv;
 var userInput1 = inputString[2];
 var userInput2 = inputString.slice(3).join(' ');
@@ -34,11 +34,18 @@ function spotifySearch() {
 };
 
 function movieSearch() {
-    console.log('movie');
+
+    request = require('request');
+    request("http://www.omdbapi.com/?apikey=" + keys.omdb.id + "&t=" + userInput2, function (error, response, body) {
+        console.log('error:', error); // Print the error if one occurred
+        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        console.log('body:', body); // Print the HTML for the Google homepage.
+    });
 };
 
 function doWhatItSays() {
     console.log('do what it says');
+    //Need to link file
 };
 
 var search = function (input) {
